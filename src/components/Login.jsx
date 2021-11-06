@@ -8,7 +8,7 @@ export default function Login() {
 
   const isLoginValid = () => {
     const MIN_LENGTH = 6;
-    const isPasswordValid = password.length >= MIN_LENGTH;
+    const isPasswordValid = password.length > MIN_LENGTH;
     const parseEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     const isEmailValid = parseEmail.test(email);
     return isEmailValid && isPasswordValid;
