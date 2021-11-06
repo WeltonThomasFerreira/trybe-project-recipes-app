@@ -16,10 +16,10 @@ export default function Login() {
 
   const isDisabled = !isLoginValid();
 
-  const handleSubmit = async () => {
-    await localStorage.setItem('mealsToken', '1');
-    await localStorage.setItem('cocktailsToken', '1');
-    await localStorage.setItem(
+  const handleSubmit = () => {
+    localStorage.setItem('mealsToken', '1');
+    localStorage.setItem('cocktailsToken', '1');
+    localStorage.setItem(
       'user',
       JSON.stringify({
         email,
