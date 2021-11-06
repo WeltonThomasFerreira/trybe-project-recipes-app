@@ -1,5 +1,8 @@
 import React from 'react';
+import Header from '../components/Header';
 
 export default function ExploreFood() {
-  return <>ExploreFood</>;
+  const title = 'Explorar Comidas';
+
+  return <Header title={ title } />;
 }
