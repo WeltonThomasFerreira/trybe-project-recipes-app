@@ -1,4 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { setQuery, setOption } from '../redux/slices/searchBarSlice';
 
 const container = {
   display: 'flex',
@@ -6,7 +9,14 @@ const container = {
   alignItems: 'center',
 };
 
-export default function SearchBar() {
+export default function SearchBar({ handleSubmit }) {
+  const dispatch = useDispatch();
+  const { query } = useSelector((store) => store.searchBar);
+
+  const handleChange = (e) => {
+    dispatch(setOption(e.target.value));
+  };
+
   return (
     <>
       <div style={ container }>
@@ -15,8 +25,16 @@ export default function SearchBar() {
             data-testid="search-input"
             type="text"
             placeholder="Buscar receita"
+            value={ query }
+            onChange={ (e) => {
+              dispatch(setQuery(e.target.value));
+            } }
           />
-          <button data-testid="exec-search-btn" type="button">
+          <button
+            data-testid="exec-search-btn"
+            type="button"
+            onClick={ handleSubmit }
+          >
             Buscar
           </button>
         </fieldset>
@@ -27,16 +45,31 @@ export default function SearchBar() {
             <input
               data-testid="ingredient-search-radio"
               type="radio"
+              name="option"
+              value="ingredient"
               id="ingredient"
+              onChange={ handleChange }
             />
             Ingrediente
           </label>
           <label data-testid="name-search-radio" htmlFor="name">
-            <input type="radio" id="name" />
+            <input
+              type="radio"
+              name="option"
+              value="name"
+              id="name"
+              onChange={ handleChange }
+            />
             Nome
           </label>
           <label data-testid="first-letter-search-radio" htmlFor="firstLetter">
-            <input type="radio" id="firstLetter" />
+            <input
+              type="radio"
+              name="option"
+              value="firstLetter"
+              id="firstLetter"
+              onChange={ handleChange }
+            />
             Primeira Letra
           </label>
         </fieldset>
@@ -44,3 +77,7 @@ export default function SearchBar() {
     </>
   );
 }
+
+SearchBar.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
