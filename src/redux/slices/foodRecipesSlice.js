@@ -37,9 +37,13 @@ export const foodRecipesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchMeals.fulfilled, (state, action) => {
-      state.meals = action.payload.meals;
-    });
+    builder
+      .addCase(fetchMeals.fulfilled, (state, action) => {
+        state.meals = action.payload.meals;
+      })
+      .addCase(fetchMeals.rejected, (state) => {
+        state.meals = ['Nenhum correspondência'];
+      });
   },
 });
 

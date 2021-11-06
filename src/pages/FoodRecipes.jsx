@@ -5,14 +5,15 @@ import SearchBar from '../components/SearchBar';
 import { fetchMeals } from '../redux/slices/foodRecipesSlice';
 
 export default function FoodRecipes() {
-  const dispatch = useDispatch();
   const title = 'Comidas';
+  const dispatch = useDispatch();
   const { query, option } = useSelector((store) => store.searchBar);
 
   const handleSubmit = () => {
     const payload = { query, option };
-    if (query.length !== 1) {
+    if (query.length !== 1 && option === 'firstLetter') {
       global.alert('Sua busca deve conter somente 1 (um) caracter');
+      console.log(query.length);
     } else {
       dispatch(fetchMeals(payload));
     }

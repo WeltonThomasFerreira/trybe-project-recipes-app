@@ -44,6 +44,7 @@ export default function SearchBar({ handleSubmit }) {
           <label htmlFor="ingredient">
             <input
               data-testid="ingredient-search-radio"
+              checked
               type="radio"
               name="option"
               value="ingredient"

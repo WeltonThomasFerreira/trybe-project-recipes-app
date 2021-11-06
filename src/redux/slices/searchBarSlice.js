@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   query: '',
-  option: '',
+  option: 'ingredient',
 };
 
 export const searchBarSlice = createSlice({
