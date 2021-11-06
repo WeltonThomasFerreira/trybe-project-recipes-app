@@ -29,34 +29,31 @@ export default function Login() {
   };
 
   return (
-    <>
-      <h2>Login</h2>
-      <form>
-        <fieldset>
-          <input
-            data-testid="email-input"
-            type="email"
-            placeholder="email@email.com"
-            value={ email }
-            onChange={ (e) => setEmail(e.target.value) }
-          />
-          <input
-            data-testid="password-input"
-            type="password"
-            placeholder="senha"
-            value={ password }
-            onChange={ (e) => setPassword(e.target.value) }
-          />
-          <button
-            data-testid="login-submit-btn"
-            disabled={ isDisabled }
-            type="button"
-            onClick={ handleSubmit }
-          >
-            Entrar
-          </button>
-        </fieldset>
-      </form>
-    </>
+    <form>
+      <fieldset>
+        <input
+          data-testid="email-input"
+          type="email"
+          placeholder="email@email.com"
+          value={ email }
+          onChange={ (e) => setEmail(e.target.value) }
+        />
+        <input
+          data-testid="password-input"
+          type="password"
+          placeholder="senha"
+          value={ password }
+          onChange={ (e) => setPassword(e.target.value) }
+        />
+        <button
+          data-testid="login-submit-btn"
+          disabled={ isDisabled }
+          type="button"
+          onClick={ handleSubmit }
+        >
+          Entrar
+        </button>
+      </fieldset>
+    </form>
   );
 }
