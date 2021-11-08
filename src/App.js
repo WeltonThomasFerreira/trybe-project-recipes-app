@@ -2,7 +2,6 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import DrinkDetails from './pages/DrinkDetails';
 import DrinkProgress from './pages/DrinkProgress';
 import DrinkRecipes from './pages/DrinkRecipes';
