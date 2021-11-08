@@ -35,16 +35,22 @@ export const fetchDrinks = createAsyncThunk(
 export const drinkRecipesSlice = createSlice({
   name: 'drinkRecipes',
   initialState,
-  reducers: {},
+  reducers: {
+    populateDrinks: (state, action) => {
+      state.drinks = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchDrinks.fulfilled, (state, action) => {
         state.drinks = action.payload.drinks;
       })
       .addCase(fetchDrinks.rejected, (state) => {
-        state.drinks = ['Nenhum correspondência'];
+        state.drinks = null;
       });
   },
 });
+
+export const { populateDrinks } = drinkRecipesSlice.actions;
 
 export default drinkRecipesSlice.reducer;
