@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import { fetchDrinks } from '../redux/slices/drinkRecipesSlice';
@@ -20,9 +21,12 @@ export default function DrinkRecipes() {
   };
 
   return (
-    <Header
-      title={ title }
-      searchBar={ <SearchBar handleSubmit={ handleSubmit } /> }
-    />
+    <>
+      <Header
+        title={ title }
+        searchBar={ <SearchBar handleSubmit={ handleSubmit } /> }
+      />
+      <Footer />
+    </>
   );
 }

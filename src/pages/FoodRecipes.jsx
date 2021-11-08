@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import { fetchMeals } from '../redux/slices/foodRecipesSlice';
+import Footer from '../components/Footer';
 
 export default function FoodRecipes() {
   const title = 'Comidas';
@@ -20,9 +21,12 @@ export default function FoodRecipes() {
   };
 
   return (
-    <Header
-      title={ title }
-      searchBar={ <SearchBar handleSubmit={ handleSubmit } /> }
-    />
+    <>
+      <Header
+        title={ title }
+        searchBar={ <SearchBar handleSubmit={ handleSubmit } /> }
+      />
+      <Footer />
+    </>
   );
 }
