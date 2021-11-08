@@ -1,7 +1,7 @@
 .meals {
   align-items: center;
   background: #0fa36b;
-  color: #464646;
+  color: whitesmoke;
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
@@ -12,7 +12,7 @@
 
 .rocksGlass {
   animation: shake 1s infinite ease;
-  max-height: 80vh;
+  max-height: 8vh;
 }
 
 /*
@@ -30,7 +30,8 @@
 */
 
 .meals > .logo {
-  animation: shake 1.5s infinite ease;
+
+  /* animation: shake 1.5s infinite ease; */
   color: aliceblue;
   font-family: Montserrat , sans-serif;
   font-size: 3em;
