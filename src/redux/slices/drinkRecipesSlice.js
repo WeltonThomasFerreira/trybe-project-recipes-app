@@ -42,7 +42,7 @@ export const drinkRecipesSlice = createSlice({
         state.drinks = action.payload.drinks;
       })
       .addCase(fetchDrinks.rejected, (state) => {
-        state.drinks = ['Nenhum correspondência'];
+        state.drinks = ['Nenhuma correspondência'];
       });
   },
 });

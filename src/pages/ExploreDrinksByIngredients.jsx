@@ -8,7 +8,6 @@ export default function ExploreDrinksByIngredients() {
   return (
     <>
       <Header title={ title } />
-      ;
       <Footer />
     </>
   );

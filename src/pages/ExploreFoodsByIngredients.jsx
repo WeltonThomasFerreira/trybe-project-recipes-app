@@ -8,7 +8,6 @@ export default function ExploreFoodsByIngredients() {
   return (
     <>
       <Header title={ title } />
-      ;
       <Footer />
     </>
   );

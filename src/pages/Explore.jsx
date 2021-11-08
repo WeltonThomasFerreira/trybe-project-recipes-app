@@ -8,7 +8,6 @@ export default function Explore() {
   return (
     <>
       <Header title={ title } />
-      ;
       <Footer />
     </>
   );

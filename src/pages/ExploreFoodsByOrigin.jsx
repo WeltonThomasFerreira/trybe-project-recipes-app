@@ -10,7 +10,6 @@ export default function ExploreFoodsByOrigin() {
   return (
     <>
       <Header title={ title } searchBar={ <SearchBar /> } />
-      ;
       <Footer />
     </>
   );
