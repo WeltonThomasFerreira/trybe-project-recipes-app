@@ -5,7 +5,7 @@ const initialState = {
 };
 
 export const fetchDrinks = createAsyncThunk(
-  'drinkRecipes/fetchDrinkss',
+  'drinkRecipes/fetchDrinks',
   async (payload) => {
     const { query, option } = payload;
     let response = {};
@@ -32,19 +32,39 @@ export const fetchDrinks = createAsyncThunk(
   },
 );
 
+export const fetchDrinksByCategory = createAsyncThunk(
+  'drinkRecipes/fetchDrinksByCategory',
+  async (category) => {
+    const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
+    const response = await data.json();
+    return response;
+  },
+);
+
 export const drinkRecipesSlice = createSlice({
   name: 'drinkRecipes',
   initialState,
-  reducers: {},
+  reducers: {
+    populateDrinks: (state, action) => {
+      state.drinks = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchDrinks.fulfilled, (state, action) => {
         state.drinks = action.payload.drinks;
-      })
+      });
+    builder
       .addCase(fetchDrinks.rejected, (state) => {
-        state.drinks = ['Nenhum correspondência'];
+        state.drinks = null;
+      });
+    builder
+      .addCase(fetchDrinksByCategory.fulfilled, (state, action) => {
+        state.drinks = action.payload.drinks;
       });
   },
 });
+
+export const { populateDrinks } = drinkRecipesSlice.actions;
 
 export default drinkRecipesSlice.reducer;
