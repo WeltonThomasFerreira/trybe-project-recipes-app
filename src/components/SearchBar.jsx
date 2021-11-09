@@ -17,6 +17,7 @@ export default function SearchBar({ handleSubmit }) {
     dispatch(setOption(e.target.value));
   };
 
+  /// Bug no radio button
   return (
     <>
       <div style={ container }>
