@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import Header from '../components/Header';
 import MealRecipeCard from '../components/MealRecipeCard';
 import SearchBar from '../components/SearchBar';
@@ -7,10 +8,10 @@ import { fetchMeals, populateMeals } from '../redux/slices/foodRecipesSlice';
 
 export default function FoodRecipes() {
   const title = 'Comidas';
+  const history = useHistory();
   const dispatch = useDispatch();
   const { query, option } = useSelector((store) => store.searchBar);
   const { meals } = useSelector((store) => store.foodRecipes);
-  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = () => {
     const payload = { query, option };
@@ -19,7 +20,6 @@ export default function FoodRecipes() {
       console.log(query.length);
     } else {
       dispatch(fetchMeals(payload));
-      setSubmitted(true);
     }
   };
 
@@ -27,6 +27,8 @@ export default function FoodRecipes() {
     const MAX_LENGTH = 12;
     if (!meals) {
       global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    } else if (meals.length === 1) {
+      history.push(`/comidas/${meals[0].idMeal}`);
     } else {
       const filteredMeals = meals.slice(0, MAX_LENGTH);
       return (
