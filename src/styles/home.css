@@ -1,0 +1,24 @@
+.home {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 23%;
+}
+
+.chiquem-logo {
+  max-width: 190px;
+}
+
+
+.describe {
+  color: rgb(75, 75, 75);
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.container-login-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

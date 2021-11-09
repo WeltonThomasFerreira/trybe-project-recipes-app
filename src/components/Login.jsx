@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../styles/login-form.css';
 
 export default function Login() {
   const history = useHistory();
@@ -30,29 +31,49 @@ export default function Login() {
 
   return (
     <form>
-      <fieldset>
-        <input
-          data-testid="email-input"
-          type="email"
-          placeholder="email@email.com"
-          value={ email }
-          onChange={ (e) => setEmail(e.target.value) }
-        />
-        <input
-          data-testid="password-input"
-          type="password"
-          placeholder="senha"
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
-        />
+      <fieldset className="container">
+        <div className="box">
+          <p>Email</p>
+          <input
+            data-testid="email-input"
+            type="email"
+            placeholder="email@email.com"
+            value={ email }
+            onChange={ (e) => setEmail(e.target.value) }
+            className="input"
+          />
+        </div>
+
+        <div className="box">
+          <p>Senha</p>
+          <input
+            data-testid="password-input"
+            type="password"
+            placeholder="senha"
+            value={ password }
+            onChange={ (e) => setPassword(e.target.value) }
+            className="input"
+          />
+        </div>
+
         <button
           data-testid="login-submit-btn"
           disabled={ isDisabled }
           type="button"
           onClick={ handleSubmit }
+          className="input box submitForm"
         >
           Entrar
         </button>
+
+        <button
+          type="button"
+          onClick={ () => global.alert('Me passa um pix que resolvo') }
+          className="input box especialButton "
+        >
+          Estou com problemas para acessar
+        </button>
+
       </fieldset>
     </form>
   );
