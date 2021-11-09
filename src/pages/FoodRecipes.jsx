@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import FoodCategories from '../components/FoodCategories';
@@ -15,15 +15,16 @@ export default function FoodRecipes() {
   const dispatch = useDispatch();
   const { query, option } = useSelector((store) => store.searchBar);
   const { meals } = useSelector((store) => store.foodRecipes);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = () => {
+    setSubmitted(true);
     const payload = { query, option };
     if (query.length !== 1 && option === 'firstLetter') {
       global.alert('Sua busca deve conter somente 1 (um) caracter');
       console.log(query.length);
     } else {
       dispatch(fetchMeals(payload));
-      if (meals.length === 1) history.push(`/comidas/${meals[0].idMeal}`);
     }
   };
 
@@ -61,6 +62,8 @@ export default function FoodRecipes() {
   useEffect(() => {
     if (!meals) {
       global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    } else if (submitted === true && meals.length === 1) {
+      history.push(`/comidas/${meals[0].idMeal}`);
     }
   }, [meals]);
 

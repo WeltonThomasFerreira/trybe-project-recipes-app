@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import Header from '../components/Header';
@@ -16,14 +16,16 @@ export default function DrinkRecipes() {
   const dispatch = useDispatch();
   const { query, option } = useSelector((store) => store.searchBar);
   const { drinks } = useSelector((store) => store.drinkRecipes);
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
+    setSubmitted(true);
     const payload = { query, option };
     if (query.length !== 1 && option === 'firstLetter') {
       global.alert('Sua busca deve conter somente 1 (um) caracter');
       console.log(query.length);
     } else {
-      await dispatch(fetchDrinks(payload));
+      dispatch(fetchDrinks(payload));
       if (drinks.length === 1) history.push(`/bebidas/${drinks[0].idDrink}`);
     }
   };
@@ -65,6 +67,8 @@ export default function DrinkRecipes() {
   useEffect(() => {
     if (!drinks) {
       global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    } else if (submitted === true && drinks.length === 1) {
+      history.push(`/bebidas/${drinks[0].idDrink}`);
     }
   }, [drinks]);
 
