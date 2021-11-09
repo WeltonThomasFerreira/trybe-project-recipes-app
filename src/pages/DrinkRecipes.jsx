@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
@@ -7,7 +8,8 @@ import DrinkRecipeCard from '../components/DrinkRecipeCard';
 import {
   fetchDrinks,
   fetchDrinksByCategory,
-  populateDrinks } from '../redux/slices/drinkRecipesSlice';
+  populateDrinks,
+} from '../redux/slices/drinkRecipesSlice';
 import DrinkCategories from '../components/DrinkCategories';
 
 export default function DrinkRecipes() {
@@ -37,27 +39,21 @@ export default function DrinkRecipes() {
 
   const renderDrinkCards = () => {
     const MAX_LENGTH = 12;
-    if (drinks.length === 1) {
-      history.push(`/bebidas/${drinks[0].idDrink}`);
-    } else {
-      const filteredDrinks = drinks.slice(0, MAX_LENGTH);
-      return (
-        <section>
-          { filteredDrinks.map((drink, index) => (
-            <DrinkRecipeCard
-              key={ drink.idDrink }
-              index={ index }
-              drink={ drink }
-            />
-          )) }
-        </section>
-      );
-    }
+    const filteredDrinks = drinks.slice(0, MAX_LENGTH);
+    return (
+      <section>
+        {filteredDrinks.map((drink, index) => (
+          <DrinkRecipeCard key={ drink.idDrink } index={ index } drink={ drink } />
+        ))}
+      </section>
+    );
   };
 
   useEffect(() => {
     const fetchBaseDrinks = async () => {
-      const baseDrinks = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+      const baseDrinks = await fetch(
+        'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=',
+      );
       const response = await baseDrinks.json();
       dispatch(populateDrinks(response.drinks));
     };
@@ -66,7 +62,9 @@ export default function DrinkRecipes() {
 
   useEffect(() => {
     if (!drinks) {
-      global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+      global.alert(
+        'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+      );
     } else if (submitted === true && drinks.length === 1) {
       history.push(`/bebidas/${drinks[0].idDrink}`);
     }
@@ -80,7 +78,7 @@ export default function DrinkRecipes() {
       />
       <main>
         <DrinkCategories handleFilters={ handleFilters } />
-        { drinks && renderDrinkCards() }
+        {drinks && renderDrinkCards()}
       </main>
     </>
   );
