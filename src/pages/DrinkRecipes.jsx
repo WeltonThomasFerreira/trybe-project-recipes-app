@@ -18,8 +18,10 @@ export default function DrinkRecipes() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { query, option } = useSelector((store) => store.searchBar);
-  const { drinks } = useSelector((store) => store.drinkRecipes);
+  const { drinks, initialDrinks } = useSelector((store) => store.drinkRecipes);
   const [submitted, setSubmitted] = useState(false);
+
+  const [currentCategory, setCurrentCategory] = useState('');
 
   const handleSubmit = () => {
     setSubmitted(true);
@@ -34,8 +36,14 @@ export default function DrinkRecipes() {
   };
 
   const handleFilters = ({ target }) => {
-    const category = target.value;
-    dispatch(fetchDrinksByCategory(category));
+    if (target.value === currentCategory || target.value === 'All') {
+      dispatch(populateDrinks(initialDrinks));
+      setCurrentCategory('');
+    } else {
+      const category = target.value;
+      dispatch(fetchDrinksByCategory(category));
+      setCurrentCategory(target.value);
+    }
   };
 
   const renderDrinkCards = () => {

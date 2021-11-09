@@ -21,7 +21,7 @@ export default function FoodRecipes() {
   const { meals, initialMeals } = useSelector((store) => store.foodRecipes);
   const [submitted, setSubmitted] = useState(false);
 
-  const [currentCategory, setCurrentCategory] = useState('');
+  const [currentCategory, setCurrentCategory] = useState('All');
 
   const handleSubmit = () => {
     setSubmitted(true);
@@ -36,7 +36,7 @@ export default function FoodRecipes() {
 
   // Resolver o porblema de sempre requisitar a api mais de uma vez
   const handleFilters = ({ target }) => {
-    if (target.value === currentCategory) {
+    if (target.value === currentCategory || target.value === 'All') {
       dispatch(populateMeals(initialMeals));
       setCurrentCategory('');
     } else {

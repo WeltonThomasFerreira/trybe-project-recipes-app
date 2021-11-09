@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
   drinks: [],
+  initialDrinks: [],
 };
 
 export const fetchDrinks = createAsyncThunk(
@@ -47,6 +48,7 @@ export const drinkRecipesSlice = createSlice({
   reducers: {
     populateDrinks: (state, action) => {
       state.drinks = action.payload;
+      state.initialDrinks = action.payload;
     },
   },
   extraReducers: (builder) => {
