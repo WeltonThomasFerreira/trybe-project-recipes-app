@@ -32,6 +32,7 @@ const recipeCategoriesSlice = createSlice({
   reducers: {
     selectFoodCategory: (state, action) => {
       state.foodCategories = action.payload;
+      console.log(action.payload);
     },
     selectDrinkCategory: (state, action) => {
       state.drinkCategories = action.payload;
