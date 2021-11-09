@@ -38,7 +38,7 @@ export default function Profile() {
           data-testid="profile-logout-btn"
           onClick={ handleClick }
         >
-          air
+          Sair
         </button>
       </Link>
       ;
