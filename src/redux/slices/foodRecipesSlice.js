@@ -33,6 +33,15 @@ export const fetchMeals = createAsyncThunk(
   },
 );
 
+export const fetchMealsByCategory = createAsyncThunk(
+  'foodRecipes/fetchMealsByCategory',
+  async (category) => {
+    const data = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
+    const response = await data.json();
+    return response;
+  },
+);
+
 export const foodRecipesSlice = createSlice({
   name: 'foodRecipes',
   initialState,
@@ -52,6 +61,9 @@ export const foodRecipesSlice = createSlice({
       })
       .addCase(fetchMeals.pending, (state) => {
         state.loading = true;
+      })
+      .addCase(fetchMealsByCategory.fulfilled, (state, action) => {
+        state.meals = action.payload.meals;
       });
   },
 });

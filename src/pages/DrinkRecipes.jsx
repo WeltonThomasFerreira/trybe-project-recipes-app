@@ -4,7 +4,11 @@ import { useHistory } from 'react-router';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import DrinkRecipeCard from '../components/DrinkRecipeCard';
-import { fetchDrinks, populateDrinks } from '../redux/slices/drinkRecipesSlice';
+import {
+  fetchDrinks,
+  fetchDrinksByCategory,
+  populateDrinks } from '../redux/slices/drinkRecipesSlice';
+import DrinkCategories from '../components/DrinkCategories';
 
 export default function DrinkRecipes() {
   const title = 'Bebidas';
@@ -13,21 +17,25 @@ export default function DrinkRecipes() {
   const { query, option } = useSelector((store) => store.searchBar);
   const { drinks } = useSelector((store) => store.drinkRecipes);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const payload = { query, option };
     if (query.length !== 1 && option === 'firstLetter') {
       global.alert('Sua busca deve conter somente 1 (um) caracter');
       console.log(query.length);
     } else {
-      dispatch(fetchDrinks(payload));
+      await dispatch(fetchDrinks(payload));
+      if (drinks.length === 1) history.push(`/bebidas/${drinks[0].idDrink}`);
     }
+  };
+
+  const handleFilters = ({ target }) => {
+    const category = target.value;
+    dispatch(fetchDrinksByCategory(category));
   };
 
   const renderDrinkCards = () => {
     const MAX_LENGTH = 12;
-    if (!drinks) {
-      global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-    } else if (drinks.length === 1) {
+    if (drinks.length === 1) {
       history.push(`/bebidas/${drinks[0].idDrink}`);
     } else {
       const filteredDrinks = drinks.slice(0, MAX_LENGTH);
@@ -54,6 +62,12 @@ export default function DrinkRecipes() {
     fetchBaseDrinks();
   }, []);
 
+  useEffect(() => {
+    if (!drinks) {
+      global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    }
+  }, [drinks]);
+
   return (
     <>
       <Header
@@ -61,7 +75,8 @@ export default function DrinkRecipes() {
         searchBar={ <SearchBar handleSubmit={ handleSubmit } /> }
       />
       <main>
-        { renderDrinkCards() }
+        <DrinkCategories handleFilters={ handleFilters } />
+        { drinks && renderDrinkCards() }
       </main>
     </>
   );

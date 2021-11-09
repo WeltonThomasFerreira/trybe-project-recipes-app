@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import FoodCategories from '../components/FoodCategories';
 import Header from '../components/Header';
 import MealRecipeCard from '../components/MealRecipeCard';
 import SearchBar from '../components/SearchBar';
-import { fetchMeals, populateMeals } from '../redux/slices/foodRecipesSlice';
+import { fetchMeals,
+  fetchMealsByCategory,
+  populateMeals } from '../redux/slices/foodRecipesSlice';
 
 export default function FoodRecipes() {
   const title = 'Comidas';
@@ -20,29 +23,30 @@ export default function FoodRecipes() {
       console.log(query.length);
     } else {
       dispatch(fetchMeals(payload));
+      if (meals.length === 1) history.push(`/comidas/${meals[0].idMeal}`);
     }
+  };
+
+  const handleFilters = ({ target }) => {
+    const category = target.value;
+    dispatch(fetchMealsByCategory(category));
   };
 
   const renderFoodCards = () => {
     const MAX_LENGTH = 12;
-    if (!meals) {
-      global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-    } else if (meals.length === 1) {
-      history.push(`/comidas/${meals[0].idMeal}`);
-    } else {
-      const filteredMeals = meals.slice(0, MAX_LENGTH);
-      return (
-        <section>
-          { filteredMeals.map((meal, index) => (
-            <MealRecipeCard
-              key={ meal.idMeal }
-              index={ index }
-              meal={ meal }
-            />
-          )) }
-        </section>
-      );
-    }
+
+    const filteredMeals = meals.slice(0, MAX_LENGTH);
+    return (
+      <section>
+        { filteredMeals.map((meal, index) => (
+          <MealRecipeCard
+            key={ meal.idMeal }
+            index={ index }
+            meal={ meal }
+          />
+        )) }
+      </section>
+    );
   };
 
   useEffect(() => {
@@ -54,6 +58,12 @@ export default function FoodRecipes() {
     fetchBaseMeals();
   }, []);
 
+  useEffect(() => {
+    if (!meals) {
+      global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    }
+  }, [meals]);
+
   return (
     <>
       <Header
@@ -61,7 +71,8 @@ export default function FoodRecipes() {
         searchBar={ <SearchBar handleSubmit={ handleSubmit } /> }
       />
       <main>
-        { renderFoodCards() }
+        <FoodCategories handleFilters={ handleFilters } />
+        { meals && renderFoodCards() }
       </main>
     </>
   );
