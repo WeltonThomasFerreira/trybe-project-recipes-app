@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import DrinkRecipeCard from '../components/DrinkRecipeCard';
@@ -80,6 +81,7 @@ export default function DrinkRecipes() {
         <DrinkCategories handleFilters={ handleFilters } />
         {drinks && renderDrinkCards()}
       </main>
+      <Footer />
     </>
   );
 }

@@ -2,13 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import Footer from '../components/Footer';
 import FoodCategories from '../components/FoodCategories';
 import Header from '../components/Header';
 import MealRecipeCard from '../components/MealRecipeCard';
 import SearchBar from '../components/SearchBar';
-import { fetchMeals,
+import {
+  fetchMeals,
   fetchMealsByCategory,
-  populateMeals } from '../redux/slices/foodRecipesSlice';
+  populateMeals,
+} from '../redux/slices/foodRecipesSlice';
 
 export default function FoodRecipes() {
   const title = 'Comidas';
@@ -40,20 +43,18 @@ export default function FoodRecipes() {
     const filteredMeals = meals.slice(0, MAX_LENGTH);
     return (
       <section>
-        { filteredMeals.map((meal, index) => (
-          <MealRecipeCard
-            key={ meal.idMeal }
-            index={ index }
-            meal={ meal }
-          />
-        )) }
+        {filteredMeals.map((meal, index) => (
+          <MealRecipeCard key={ meal.idMeal } index={ index } meal={ meal } />
+        ))}
       </section>
     );
   };
 
   useEffect(() => {
     const fetchBaseMeals = async () => {
-      const baseMeals = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+      const baseMeals = await fetch(
+        'https://www.themealdb.com/api/json/v1/1/search.php?s=',
+      );
       const response = await baseMeals.json();
       dispatch(populateMeals(response.meals));
     };
@@ -62,7 +63,9 @@ export default function FoodRecipes() {
 
   useEffect(() => {
     if (!meals) {
-      global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+      global.alert(
+        'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+      );
     } else if (submitted === true && meals.length === 1) {
       history.push(`/comidas/${meals[0].idMeal}`);
     }
@@ -76,8 +79,9 @@ export default function FoodRecipes() {
       />
       <main>
         <FoodCategories handleFilters={ handleFilters } />
-        { meals && renderFoodCards() }
+        {meals && renderFoodCards()}
       </main>
+      <Footer />
     </>
   );
 }
