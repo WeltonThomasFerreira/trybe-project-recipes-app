@@ -3,8 +3,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 const initialState = {
   foodCategories: [],
   drinkCategories: [],
-  selectedFood: '',
-  selectedDrink: '',
   error: '',
 };
 
@@ -29,15 +27,7 @@ export const fetchDrinkCategories = createAsyncThunk(
 const recipeCategoriesSlice = createSlice({
   name: 'recipeCategories',
   initialState,
-  reducers: {
-    selectFoodCategory: (state, action) => {
-      state.foodCategories = action.payload;
-      console.log(action.payload);
-    },
-    selectDrinkCategory: (state, action) => {
-      state.drinkCategories = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchFoodCategories.fulfilled, (state, action) => {
