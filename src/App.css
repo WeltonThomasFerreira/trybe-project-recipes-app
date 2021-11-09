@@ -1,4 +1,12 @@
-.meals {
+body {
+  align-items: center;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+/* .meals {
   align-items: center;
   background: #0fa36b;
   color: whitesmoke;
@@ -13,7 +21,7 @@
 .rocksGlass {
   animation: shake 1s infinite ease;
   max-height: 8vh;
-}
+} */
 
 /*
 #iceLeft {
@@ -29,16 +37,16 @@
 }
 */
 
-.meals > .logo {
+/* .meals > .logo {
 
-  /* animation: shake 1.5s infinite ease; */
+  animation: shake 1.5s infinite ease;
   color: aliceblue;
   font-family: Montserrat , sans-serif;
   font-size: 3em;
   font-weight: 900;
-}
+} */
 
-@keyframes shake {
+/* @keyframes shake {
 
   0% {
     transform: rotate(5deg);
@@ -66,4 +74,4 @@
   100% {
     transform: rotate(-10deg);
   }
-}
+} */

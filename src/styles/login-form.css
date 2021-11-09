@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.box {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+p {
+  font-size: large;
+  margin-bottom: 0;
+}
+
+
+.input {
+  border: none;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.212) 0 0 5px;
+  min-height: 50px;
+  min-width: 300px;
+  outline: none;
+  padding-left: 20px;
+}
+
+
+.submitForm [ disabled ], .submitForm:disabled {
+  background-color: rgb(180, 180, 180);
+  color: rgb(71, 70, 70);
+}
+
+.submitForm [ enabled ], .submitForm:enabled {
+  background-color: rgb(248, 101, 101);
+  color: white;
+}
+
+.especialButton {
+  background-color: white;
+  border: solid red 1px;
+  box-shadow: none;
+  color: red;
+}
