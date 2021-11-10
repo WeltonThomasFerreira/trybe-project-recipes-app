@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { fetchIngredients } from '../redux/slices/ingredientListSlice';
+import { fetchIngredients, callFunctionTrue } from '../redux/slices/ingredientListSlice';
 import { setOption, setQuery } from '../redux/slices/searchBarSlice';
 
 export default function ExploreFoodsByIngredients() {
@@ -18,11 +19,9 @@ export default function ExploreFoodsByIngredients() {
   }, []);
 
   const handleClick = (nome) => {
-    // const payload = { query: nome, option: 'ingredient' };
-    // dispatch(fetchMeals(payload));
     dispatch(setQuery(nome));
     dispatch(setOption('ingredient'));
-    console.log(nome);
+    dispatch(callFunctionTrue());
   };
 
   return (

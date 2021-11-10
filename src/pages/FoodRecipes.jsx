@@ -20,6 +20,7 @@ export default function FoodRecipes() {
   const { query, option } = useSelector((store) => store.searchBar);
   const { meals } = useSelector((store) => store.foodRecipes);
   const [submitted, setSubmitted] = useState(false);
+  const { callFunction } = useSelector((store) => store.ingredientsList);
 
   const handleSubmit = () => {
     setSubmitted(true);
@@ -58,15 +59,9 @@ export default function FoodRecipes() {
       const response = await baseMeals.json();
       dispatch(populateMeals(response.meals));
     };
-    fetchBaseMeals();
-  }, []);
-
-  useEffect(() => {
-    const getMeals = async () => {
-      const payload = { query, option };
-      await dispatch(fetchMeals(payload));
-    };
-    getMeals();
+    if (callFunction === true) { handleSubmit(); } else {
+      fetchBaseMeals();
+    }
   }, []);
 
   useEffect(() => {

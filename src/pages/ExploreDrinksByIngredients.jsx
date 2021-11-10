@@ -1,9 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { fetchIngredientsDrink } from '../redux/slices/ingredientsDrinkSlice';
+import {
+  fetchIngredientsDrink,
+  callFunctionDrinksTrue } from '../redux/slices/ingredientsDrinkSlice';
 import { setQuery, setOption } from '../redux/slices/searchBarSlice';
 
 export default function ExploreDrinksByIngredients() {
@@ -20,7 +23,7 @@ export default function ExploreDrinksByIngredients() {
   const handleClick = (nome) => {
     dispatch(setQuery(nome));
     dispatch(setOption('ingredient'));
-    console.log(nome);
+    dispatch(callFunctionDrinksTrue());
   };
 
   return (

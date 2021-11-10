@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const initialState = {
   ingredientsApi: [],
   error: '',
+  callFunction: false,
 };
 
 export const fetchIngredients = createAsyncThunk(
@@ -16,7 +17,11 @@ export const fetchIngredients = createAsyncThunk(
 export const ingredientListSlice = createSlice({
   name: 'ingredientList',
   initialState,
-  reducers: {},
+  reducers: {
+    callFunctionTrue(state) {
+      state.callFunction = true;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchIngredients.fulfilled, (state, action) => {
@@ -28,4 +33,5 @@ export const ingredientListSlice = createSlice({
   },
 });
 
+export const { callFunctionTrue } = ingredientListSlice.actions;
 export default ingredientListSlice.reducer;
