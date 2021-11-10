@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { fetchDrinkById } from '../redux/slices/drinkRecipesSlice';
+import { fecthSuggestedMeals } from '../redux/slices/foodRecipesSlice';
 
 export default function DrinkDetails() {
   const history = useHistory();
@@ -10,10 +11,11 @@ export default function DrinkDetails() {
   const index = path.split('/')[2];
   const dispatch = useDispatch();
   const { drinkDetail } = useSelector((store) => store.drinkRecipes);
+  const { suggestedMeals } = useSelector((store) => store.foodRecipes);
 
   useEffect(() => {
-    const drinkDetails = async () => dispatch(fetchDrinkById(index));
-    drinkDetails();
+    dispatch(fetchDrinkById(index));
+    dispatch(fecthSuggestedMeals());
   }, []);
 
   const mapIngredients = (drink) => {
@@ -32,13 +34,12 @@ export default function DrinkDetails() {
         data-testid={ `${i}-ingredient-name-and-measure` }
       >
         {element}
-        -
-        { mensure[i] }
+        { mensure[i] ? `-  ${mensure[i]}` : ''}
       </p>
     ));
   };
 
-  console.log(drinkDetail);
+  console.log(suggestedMeals);
   return (
     <>
       DrinkDetails

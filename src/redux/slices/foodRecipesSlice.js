@@ -4,6 +4,7 @@ const initialState = {
   meals: [],
   loading: false,
   mealDetail: [],
+  suggestedMeals: [],
 };
 
 export const fetchMeals = createAsyncThunk(
@@ -51,6 +52,15 @@ export const fetchMealsByCategory = createAsyncThunk(
   },
 );
 
+export const fecthSuggestedMeals = createAsyncThunk(
+  'foodRecipes/fecthSuggestedMeals',
+  async () => {
+    const data = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+    const response = await data.json();
+    return response;
+  },
+);
+
 export const foodRecipesSlice = createSlice({
   name: 'foodRecipes',
   initialState,
@@ -76,6 +86,11 @@ export const foodRecipesSlice = createSlice({
       })
       .addCase(fetchFoodById.fulfilled, (state, action) => {
         state.mealDetail = action.payload.meals;
+      })
+      .addCase(fecthSuggestedMeals.fulfilled, (state, action) => {
+        const SIX = 6;
+        const sixSuggestedMeals = action.payload.meals.slice(0, SIX);
+        state.suggestedMeals = sixSuggestedMeals;
       });
   },
 });
