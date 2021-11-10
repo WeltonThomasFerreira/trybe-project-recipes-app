@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import '../styles/mealDetail.css';
+import '../styles/pageDetails.css';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 

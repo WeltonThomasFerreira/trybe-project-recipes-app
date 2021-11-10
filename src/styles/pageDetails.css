@@ -1,0 +1,16 @@
+.img {
+  width: 280px;
+}
+
+.cardImage {
+  width: 181px;
+}
+
+.card {
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  max-width: 360px;
+  overflow-x: auto;
+  text-align: center;
+}

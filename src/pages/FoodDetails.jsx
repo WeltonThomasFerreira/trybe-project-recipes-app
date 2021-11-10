@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { fetchFoodById } from '../redux/slices/foodRecipesSlice';
 import { fetchDrinksRecommended } from '../redux/slices/drinkRecipesSlice';
+import '../styles/pageDetails.css';
 
 export default function FoodDetails() {
   const history = useHistory();
@@ -68,13 +69,23 @@ export default function FoodDetails() {
             data-testid="video"
             allow=" autoplay; clipboard-write; encrypted-media; picture-in-picture"
           />
-          <div data-testid={ `${position}-recomendation-card` }>
-            { console.log(suggestedDrink) }
+          <div className="card">
+            {
+              suggestedDrink.map(({ strDrink, strDrinkThumb }, indice) => (
+                <div
+                  classNam="item"
+                  key={ strDrink }
+                  data-testid={ `${indice}-recomendation-card` }
+                >
+                  <img className="cardImage" src={ strDrinkThumb } alt={ strDrink } />
+                  <p data-testid={ `${indice}-recomendation-title` }>{strDrink}</p>
+                </div>
+              ))
+            }
           </div>
           <button type="button" data-testid="start-recipe-btn">Start</button>
         </div>
       ))}
-      ;
     </>
   );
 }
