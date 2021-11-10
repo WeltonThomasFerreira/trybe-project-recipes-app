@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
+  initialMeals: [],
   meals: [],
-  loading: false,
 };
 
 export const fetchMeals = createAsyncThunk(
@@ -48,6 +48,7 @@ export const foodRecipesSlice = createSlice({
   reducers: {
     populateMeals: (state, action) => {
       state.meals = action.payload;
+      state.initialMeals = action.payload;
     },
   },
   extraReducers: (builder) => {

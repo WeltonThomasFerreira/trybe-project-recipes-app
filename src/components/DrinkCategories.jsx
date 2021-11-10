@@ -24,6 +24,14 @@ export default function DrinkCategories({ handleFilters }) {
           </button>
 
         ))}
+        <button
+          type="button"
+          value="All"
+          data-testid="All-category-filter"
+          onClick={ handleFilters }
+        >
+          All
+        </button>
       </section>
     );
   };
