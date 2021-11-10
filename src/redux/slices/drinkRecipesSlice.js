@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
   drinks: [],
+  drinkDetail: [],
 };
 
 export const fetchDrinks = createAsyncThunk(
@@ -28,6 +29,14 @@ export const fetchDrinks = createAsyncThunk(
     default:
       break;
     }
+    return response.json();
+  },
+);
+
+export const fetchDrinkById = createAsyncThunk(
+  'drinkRecipes/fetchDrinkById',
+  async (id) => {
+    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
     return response.json();
   },
 );
@@ -61,6 +70,10 @@ export const drinkRecipesSlice = createSlice({
     builder
       .addCase(fetchDrinksByCategory.fulfilled, (state, action) => {
         state.drinks = action.payload.drinks;
+      });
+    builder
+      .addCase(fetchDrinkById.fulfilled, (state, action) => {
+        state.drinkDetail = action.payload.drinks;
       });
   },
 });
