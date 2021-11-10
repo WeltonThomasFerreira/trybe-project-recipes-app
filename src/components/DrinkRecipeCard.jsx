@@ -12,7 +12,7 @@ export default function DrinkRecipeCard({ drink, index }) {
           alt={ drink.strDrink }
           width="100"
         />
-        <p data-testid={ `${index}-card-name` }>{drink.strDrink}</p>
+        <p data-testid={ `${index}-card-name` }>{ drink.strDrink }</p>
       </div>
     </Link>
   );
