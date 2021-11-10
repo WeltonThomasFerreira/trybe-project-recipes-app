@@ -62,6 +62,14 @@ export default function FoodRecipes() {
   }, []);
 
   useEffect(() => {
+    const getMeals = async () => {
+      const payload = { query, option };
+      await dispatch(fetchMeals(payload));
+    };
+    getMeals();
+  }, []);
+
+  useEffect(() => {
     if (!meals) {
       global.alert(
         'Sinto muito, não encontramos nenhuma receita para esses filtros.',

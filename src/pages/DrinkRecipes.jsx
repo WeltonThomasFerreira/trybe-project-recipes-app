@@ -62,6 +62,14 @@ export default function DrinkRecipes() {
   }, []);
 
   useEffect(() => {
+    const getDrinks = async () => {
+      const payload = { query, option };
+      await dispatch(fetchDrinks(payload));
+    };
+    getDrinks();
+  }, []);
+
+  useEffect(() => {
     if (!drinks) {
       global.alert(
         'Sinto muito, não encontramos nenhuma receita para esses filtros.',

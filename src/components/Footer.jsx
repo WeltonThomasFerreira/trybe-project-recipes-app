@@ -13,6 +13,7 @@ const container = {
   bottom: 0,
   width: '100%',
   textAling: 'center',
+  backgroundColor: 'rgb(248, 101, 101)',
 };
 
 export default function Footer() {
