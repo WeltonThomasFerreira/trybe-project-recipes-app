@@ -1,22 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import '../styles/mealDetail.css';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default function MealRecipeCard({ meal, index }) {
-  const history = useHistory();
-  const { meals } = useSelector((store) => store.foodRecipes);
-
-  const redirectToDetails = () => {
-    history.push(`/comidas/${meals[index].idMeal}`);
-  };
-
   return (
-    <div
-      data-testid={ `${index}-recipe-card` }
-    >
-      <button type="button" onClick={ () => redirectToDetails() }>
+    <Link to={ `/comidas/${meal.idMeal}` }>
+      <div data-testid={ `${index}-recipe-card` }>
         <img
           data-testid={ `${index}-card-img` }
           src={ meal.strMealThumb }
@@ -24,14 +14,15 @@ export default function MealRecipeCard({ meal, index }) {
           width="100"
         />
         <p data-testid={ `${index}-card-name` }>{ meal.strMeal }</p>
-      </button>
-    </div>
+      </div>
+    </Link>
   );
 }
 
 MealRecipeCard.propTypes = {
   index: PropTypes.number.isRequired,
   meal: PropTypes.shape({
+    idMeal: PropTypes.string.isRequired,
     strMeal: PropTypes.string.isRequired,
     strMealThumb: PropTypes.string.isRequired,
   }).isRequired,

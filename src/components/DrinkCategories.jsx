@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -24,6 +25,14 @@ export default function DrinkCategories({ handleFilters }) {
           </button>
 
         ))}
+        <button
+          type="button"
+          value="All"
+          data-testid="All-category-filter"
+          onClick={ handleFilters }
+        >
+          All
+        </button>
       </section>
     );
   };

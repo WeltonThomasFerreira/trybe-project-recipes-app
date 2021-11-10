@@ -18,8 +18,10 @@ export default function FoodRecipes() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { query, option } = useSelector((store) => store.searchBar);
-  const { meals } = useSelector((store) => store.foodRecipes);
+  const { meals, initialMeals } = useSelector((store) => store.foodRecipes);
   const [submitted, setSubmitted] = useState(false);
+
+  const [currentCategory, setCurrentCategory] = useState('All');
 
   const handleSubmit = () => {
     setSubmitted(true);
@@ -32,9 +34,16 @@ export default function FoodRecipes() {
     }
   };
 
+  // Resolver o porblema de sempre requisitar a api mais de uma vez
   const handleFilters = ({ target }) => {
-    const category = target.value;
-    dispatch(fetchMealsByCategory(category));
+    if (target.value === currentCategory || target.value === 'All') {
+      dispatch(populateMeals(initialMeals));
+      setCurrentCategory('');
+    } else {
+      const category = target.value;
+      dispatch(fetchMealsByCategory(category));
+      setCurrentCategory(target.value);
+    }
   };
 
   const renderFoodCards = () => {
