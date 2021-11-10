@@ -42,8 +42,7 @@ export default function FoodDetails() {
 
   return (
     <>
-      FoodDetail
-      {mealDetail.map((meal, position) => (
+      {mealDetail.map((meal) => (
         <div key={ meal }>
           <img
             className="img"
@@ -83,7 +82,13 @@ export default function FoodDetails() {
               ))
             }
           </div>
-          <button type="button" data-testid="start-recipe-btn">Start</button>
+          <button
+            className="star-btn"
+            type="button"
+            data-testid="start-recipe-btn"
+          >
+            Start
+          </button>
         </div>
       ))}
     </>
