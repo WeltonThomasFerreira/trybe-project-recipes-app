@@ -3,6 +3,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const initialState = {
   initialMeals: [],
   meals: [],
+  loading: false,
+  mealDetail: [],
 };
 
 export const fetchMeals = createAsyncThunk(
@@ -29,6 +31,14 @@ export const fetchMeals = createAsyncThunk(
     default:
       break;
     }
+    return response.json();
+  },
+);
+
+export const fetchFoodById = createAsyncThunk(
+  'foodRecipes/fetchFoodById',
+  async (id) => {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
     return response.json();
   },
 );
@@ -65,6 +75,9 @@ export const foodRecipesSlice = createSlice({
       })
       .addCase(fetchMealsByCategory.fulfilled, (state, action) => {
         state.meals = action.payload.meals;
+      })
+      .addCase(fetchFoodById.fulfilled, (state, action) => {
+        state.mealDetail = action.payload.meals;
       });
   },
 });
