@@ -12,8 +12,7 @@ export default function DrinkDetails() {
   const { drinkDetail } = useSelector((store) => store.drinkRecipes);
 
   useEffect(() => {
-    const drinkDetails = async () => dispatch(fetchDrinkById(index));
-    drinkDetails();
+    dispatch(fetchDrinkById(index));
   }, []);
 
   const mapIngredients = (drink) => {
@@ -38,11 +37,10 @@ export default function DrinkDetails() {
     ));
   };
 
-  console.log(drinkDetail);
   return (
     <>
       DrinkDetails
-      {drinkDetail.map((drink, position) => (
+      {drinkDetail && drinkDetail.map((drink, position) => (
         <div key={ drink }>
           <img
             className="img"
@@ -54,7 +52,7 @@ export default function DrinkDetails() {
           <p data-testid="recipe-category">{drink.strAlcoholic}</p>
           <button type="button" data-testid="share-btn">Compartilhar</button>
           <button type="button" data-testid="favorite-btn">Favoritar</button>
-          <div>
+          <div data-testid={ `${index}-ingredient-name-and-measure` }>
             <h2>Ingredientes</h2>
             { mapIngredients(drink)}
           </div>

@@ -49,9 +49,10 @@ export default function DrinkRecipes() {
   const renderDrinkCards = () => {
     const MAX_LENGTH = 12;
     const filteredDrinks = drinks.slice(0, MAX_LENGTH);
+    console.log(filteredDrinks);
     return (
       <section>
-        {filteredDrinks.map((drink, index) => (
+        {filteredDrinks && filteredDrinks.map((drink, index) => (
           <DrinkRecipeCard key={ drink.idDrink } index={ index } drink={ drink } />
         ))}
       </section>

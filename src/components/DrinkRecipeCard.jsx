@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 export default function DrinkRecipeCard({ drink, index }) {
   return (
-    <div data-testid={ `${index}-recipe-card` }>
-      <Link to={ `/bebidas/${drink.idDrink}` }>
+    <Link to={ `/bebidas/${drink.idDrink}` }>
+      <div data-testid={ `${index}-recipe-card` }>
         <img
           data-testid={ `${index}-card-img` }
           src={ drink.strDrinkThumb }
@@ -13,8 +13,8 @@ export default function DrinkRecipeCard({ drink, index }) {
           width="100"
         />
         <p data-testid={ `${index}-card-name` }>{drink.strDrink}</p>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
 

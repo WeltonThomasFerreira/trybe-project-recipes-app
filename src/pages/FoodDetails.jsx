@@ -12,8 +12,7 @@ export default function FoodDetails() {
   const { mealDetail } = useSelector((store) => store.foodRecipes);
 
   useEffect(() => {
-    const mealDetails = async () => dispatch(fetchFoodById(index));
-    mealDetails();
+    dispatch(fetchFoodById(index));
   }, []);
 
   const mapIngredients = (meal) => {
@@ -42,7 +41,7 @@ export default function FoodDetails() {
   return (
     <>
       FoodDetail
-      {mealDetail.map((meal, position) => (
+      { mealDetail && mealDetail.map((meal, position) => (
         <div key={ meal }>
           <img
             className="img"
