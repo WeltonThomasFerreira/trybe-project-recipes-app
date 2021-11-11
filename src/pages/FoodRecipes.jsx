@@ -20,6 +20,9 @@ export default function FoodRecipes() {
   const { query, option } = useSelector((store) => store.searchBar);
   const { meals, initialMeals } = useSelector((store) => store.foodRecipes);
   const [submitted, setSubmitted] = useState(false);
+  const { callFunction } = useSelector((store) => store.ingredientsList);
+
+  const [currentCategory, setCurrentCategory] = useState('All');
 
   const [currentCategory, setCurrentCategory] = useState('All');
 
@@ -67,7 +70,9 @@ export default function FoodRecipes() {
       const response = await baseMeals.json();
       dispatch(populateMeals(response.meals));
     };
-    fetchBaseMeals();
+    if (callFunction === true) { handleSubmit(); } else {
+      fetchBaseMeals();
+    }
   }, []);
 
   useEffect(() => {

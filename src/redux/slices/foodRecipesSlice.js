@@ -3,7 +3,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const initialState = {
   initialMeals: [],
   meals: [],
-  loading: false,
   mealDetail: [],
 };
 

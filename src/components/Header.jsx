@@ -8,6 +8,7 @@ const container = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  backgroundColor: 'rgb(248, 101, 101)',
 };
 const titleStyle = { display: 'inline', padding: '20px' };
 

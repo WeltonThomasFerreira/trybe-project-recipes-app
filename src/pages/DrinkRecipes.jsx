@@ -20,6 +20,9 @@ export default function DrinkRecipes() {
   const { query, option } = useSelector((store) => store.searchBar);
   const { drinks, initialDrinks } = useSelector((store) => store.drinkRecipes);
   const [submitted, setSubmitted] = useState(false);
+  const { callFunctionDrinks } = useSelector((store) => store.ingredientsListDrink);
+
+  const [currentCategory, setCurrentCategory] = useState('');
 
   const [currentCategory, setCurrentCategory] = useState('');
 
@@ -67,7 +70,9 @@ export default function DrinkRecipes() {
       const response = await baseDrinks.json();
       dispatch(populateDrinks(response.drinks));
     };
-    fetchBaseDrinks();
+    if (callFunctionDrinks === true) { handleSubmit(); } else {
+      fetchBaseDrinks();
+    }
   }, []);
 
   useEffect(() => {
