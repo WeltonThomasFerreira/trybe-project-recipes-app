@@ -121,8 +121,9 @@ export default function FoodDetails() {
             className="start"
             type="button"
             data-testid="start-recipe-btn"
+            onClick={ () => history.push(`/comidas/${index}/in-progress`) }
           >
-            Start
+            Iniciar Reaceita
           </button>
         </div>
       ))}

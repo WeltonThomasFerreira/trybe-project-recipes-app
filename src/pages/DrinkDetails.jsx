@@ -104,6 +104,7 @@ export default function DrinkDetails() {
             className="start"
             type="button"
             data-testid="start-recipe-btn"
+            onClick={ () => history.push(`/bebidas/${index}/in-progress`) }
           >
             Start
           </button>
