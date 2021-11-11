@@ -39,52 +39,77 @@ export default function DrinkDetails() {
 
   return (
     <>
-      DrinkDetails
-      {drinkDetail
-        && drinkDetail.map((drink) => (
-          <div key={ drink }>
-            <img
-              className="img"
-              src={ drink.strDrinkThumb }
-              data-testid="recipe-photo"
-              alt=""
-            />
-            <h3 data-testid="recipe-title">{drink.strDrink}</h3>
-            <p data-testid="recipe-category">{drink.strAlcoholic}</p>
-            <button type="button" data-testid="share-btn">
-              Compartilhar
-            </button>
-            <button type="button" data-testid="favorite-btn">
-              Favoritar
-            </button>
-            <div data-testid={ `${index}-ingredient-name-and-measure` }>
-              <h2>Ingredientes</h2>
-              {mapIngredients(drink)}
-            </div>
-            <h3>Instruções</h3>
-            <p data-testid="instructions">{drink.strInstructions}</p>
+      {drinkDetail.map((drink) => (
+        <div key={ drink } className="body">
+          <img
+            className="food-img"
+            src={ drink.strDrinkThumb }
+            data-testid="recipe-photo"
+            alt=""
+          />
 
-            <div className="card">
-              {suggestedMeals.map(({ strMeal, strMealThumb }, indice) => (
-                <div
-                  classNam="item"
-                  key={ strMeal }
-                  data-testid={ `${indice}-recomendation-card` }
-                >
-                  <img className="cardImage" src={ strMealThumb } alt={ strMeal } />
-                  <p data-testid={ `${indice}-recomendation-title` }>{strMeal}</p>
-                </div>
-              ))}
+          <div className="container">
+            <div className="header">
+              <div classNam="title">
+                <h3 data-testid="recipe-title">{ drink.strDrink}</h3>
+                <p data-testid="recipe-category">{drink.strAlcoholic}</p>
+              </div>
+
+              <div className="buttons">
+                <button type="button" data-testid="share-btn">S</button>
+                <button type="button" data-testid="favorite-btn">L</button>
+              </div>
             </div>
-            <button
-              className="star-btn"
-              type="button"
-              data-testid="start-recipe-btn"
-            >
-              Start
-            </button>
+
+            <div className="ingredients">
+              <h2>Ingredientes</h2>
+              <div className="line" />
+              <div className="values-ingredients">
+                { mapIngredients(drink)}
+              </div>
+            </div>
+
+            <div className="instructions">
+              <h3>Instruções</h3>
+              <div className="line" />
+              <p data-testid="instructions">{ drink.strInstructions }</p>
+            </div>
+
+            <div className="carousel">
+              {
+                suggestedMeals.map(({ strMeal, strMealThumb }, indice) => (
+                  <div
+                    classNam="item"
+                    key={ strMeal }
+
+                  >
+                    <button
+                      type="button"
+                      data-testid={ `${indice}-recomendation-card` }
+                      className="card"
+                    >
+                      <img
+                        src={ strMealThumb }
+                        alt={ strMeal }
+                        className="image-item"
+                      />
+                      <p data-testid={ `${indice}-recomendation-title` }>{strMeal}</p>
+                    </button>
+                  </div>
+                ))
+              }
+            </div>
           </div>
-        ))}
+          <button
+            className="start"
+            type="button"
+            data-testid="start-recipe-btn"
+            onClick={ () => history.push(`/bebidas/${index}/in-progress`) }
+          >
+            Start
+          </button>
+        </div>
+      ))}
     </>
   );
 }
