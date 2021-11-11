@@ -30,12 +30,9 @@ export default function DrinkDetails() {
       }
     }
     return items.map((element, i) => (
-      <p
-        key={ element }
-        data-testid={ `${i}-ingredient-name-and-measure` }
-      >
+      <p key={ element } data-testid={ `${i}-ingredient-name-and-measure` }>
         {element}
-        { mensure[i] ? `-  ${mensure[i]}` : ''}
+        {mensure[i] ? `-  ${mensure[i]}` : ''}
       </p>
     ));
   };
