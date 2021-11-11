@@ -4,6 +4,7 @@ const initialState = {
   drinks: [],
   drinkDetail: [],
   suggestedDrink: [],
+  initialDrinks: [],
 };
 
 export const fetchDrinks = createAsyncThunk(
@@ -66,6 +67,7 @@ export const drinkRecipesSlice = createSlice({
   reducers: {
     populateDrinks: (state, action) => {
       state.drinks = action.payload;
+      state.initialDrinks = action.payload;
     },
   },
   extraReducers: (builder) => {

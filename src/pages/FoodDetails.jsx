@@ -16,7 +16,10 @@ export default function FoodDetails() {
 
   useEffect(() => {
     dispatch(fetchFoodById(index));
+<<<<<<< HEAD
     dispatch(fetchDrinksRecommended());
+=======
+>>>>>>> main-group-3-workspace
   }, []);
 
   const mapIngredients = (meal) => {
@@ -42,7 +45,12 @@ export default function FoodDetails() {
 
   return (
     <>
+<<<<<<< HEAD
       {mealDetail.map((meal) => (
+=======
+      FoodDetail
+      { mealDetail && mealDetail.map((meal, position) => (
+>>>>>>> main-group-3-workspace
         <div key={ meal }>
           <img
             className="img"
