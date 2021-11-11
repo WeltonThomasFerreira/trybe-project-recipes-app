@@ -44,7 +44,7 @@ export default function DrinkDetails() {
     <>
       DrinkDetails
       {drinkDetail.map((drink) => (
-        <div key={ drink }>
+        <div key={ drink } className="body">
           <img
             className="img"
             src={ drink.strDrinkThumb }

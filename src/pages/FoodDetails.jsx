@@ -43,47 +43,87 @@ export default function FoodDetails() {
   return (
     <>
       {mealDetail.map((meal) => (
-        <div key={ meal }>
+        <div key={ meal } className="body">
           <img
-            className="img"
+            className="food-img"
             src={ meal.strMealThumb }
             data-testid="recipe-photo"
             alt="imagem"
           />
-          <h2 data-testid="recipe-title">{ meal.strMeal}</h2>
-          <p data-testid="recipe-category">{meal.strCategory}</p>
-          <button type="button" data-testid="share-btn">Compartilhar</button>
-          <button type="button" data-testid="favorite-btn">Favoritar</button>
-          <div data-testid={ `${index}-ingredient-name-and-measure` }>
-            <h3>Ingredientes</h3>
-            { mapIngredients(meal)}
-          </div>
-          <h3>Instruções</h3>
-          <p data-testid="instructions">{ meal.strInstructions }</p>
-          <h3>Vídeo</h3>
-          <iframe
-            src={ meal.strYoutube }
-            title={ `video ${meal}` }
-            frameBorder="0"
-            data-testid="video"
-            allow=" autoplay; clipboard-write; encrypted-media; picture-in-picture"
-          />
-          <div className="card">
-            {
-              suggestedDrink.map(({ strDrink, strDrinkThumb }, indice) => (
-                <div
-                  classNam="item"
-                  key={ strDrink }
-                  data-testid={ `${indice}-recomendation-card` }
+
+          <div className="container">
+            <div className="header">
+              <div className="title">
+                <h2 data-testid="recipe-title">{ meal.strMeal}</h2>
+                <p data-testid="recipe-category">{meal.strCategory}</p>
+              </div>
+
+              <div className="buttons">
+                <button
+                  type="button"
+                  data-testid="share-btn"
+                  className="share"
                 >
-                  <img className="cardImage" src={ strDrinkThumb } alt={ strDrink } />
-                  <p data-testid={ `${indice}-recomendation-title` }>{strDrink}</p>
-                </div>
-              ))
-            }
+                  S
+                </button>
+                <button
+                  type="button"
+                  data-testid="favorite-btn"
+                  className="like"
+                >
+                  L
+                </button>
+              </div>
+            </div>
+
+            <div className="ingredients">
+              <div data-testid={ `${index}-ingredient-name-and-measure` }>
+                <h3>Ingredientes</h3>
+                { mapIngredients(meal)}
+              </div>
+            </div>
+
+            <div className="instructions">
+              <h3>Instruções</h3>
+              <div className="line" />
+              <p
+                className="text-instructions"
+                data-testid="instructions"
+              >
+                { meal.strInstructions }
+              </p>
+              <h3>Vídeo</h3>
+              <iframe
+                src={ meal.strYoutube }
+                title={ `video ${meal}` }
+                frameBorder="0"
+                data-testid="video"
+                allow=" autoplay; clipboard-write; encrypted-media; picture-in-picture"
+              />
+            </div>
+
+            <div className="carousel">
+              {
+                suggestedDrink.map(({ strDrink, strDrinkThumb }, indice) => (
+                  <div
+                    key={ strDrink }
+                    data-testid={ `${indice}-recomendation-card` }
+                  >
+                    <button type="button" className="card">
+                      <img
+                        className="image-item"
+                        src={ strDrinkThumb }
+                        alt={ strDrink }
+                      />
+                      <p data-testid={ `${indice}-recomendation-title` }>{strDrink}</p>
+                    </button>
+                  </div>
+                ))
+              }
+            </div>
           </div>
           <button
-            className="star-btn"
+            className="start"
             type="button"
             data-testid="start-recipe-btn"
           >
