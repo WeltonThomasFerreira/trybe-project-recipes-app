@@ -24,6 +24,8 @@ export default function FoodRecipes() {
 
   const [currentCategory, setCurrentCategory] = useState('All');
 
+  const [currentCategory, setCurrentCategory] = useState('All');
+
   const handleSubmit = () => {
     setSubmitted(true);
     const payload = { query, option };
