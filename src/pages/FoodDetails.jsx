@@ -42,8 +42,9 @@ export default function FoodDetails() {
 
   return (
     <>
-      {mealDetail.map((meal) => (
-        <div key={ meal } className="body">
+      FoodDetail
+      { mealDetail && mealDetail.map((meal) => (
+        <div key={ meal }>
           <img
             className="food-img"
             src={ meal.strMealThumb }
