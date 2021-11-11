@@ -59,26 +59,18 @@ export default function FoodDetails() {
               </div>
 
               <div className="buttons">
-                <button
-                  type="button"
-                  data-testid="share-btn"
-                  className="share"
-                >
-                  S
-                </button>
-                <button
-                  type="button"
-                  data-testid="favorite-btn"
-                  className="like"
-                >
-                  L
-                </button>
+                <button type="button" data-testid="share-btn">S</button>
+                <button type="button" data-testid="favorite-btn">L</button>
               </div>
             </div>
 
-            <div className="ingredients">
-              <div data-testid={ `${index}-ingredient-name-and-measure` }>
-                <h3>Ingredientes</h3>
+            <div
+              className="ingredients"
+              data-testid={ `${index}-ingredient-name-and-measure` }
+            >
+              <h3 className="text-ingredientes">Ingredientes</h3>
+              <div className="line" />
+              <div className="values-ingredients">
                 { mapIngredients(meal)}
               </div>
             </div>
@@ -107,9 +99,12 @@ export default function FoodDetails() {
                 suggestedDrink.map(({ strDrink, strDrinkThumb }, indice) => (
                   <div
                     key={ strDrink }
-                    data-testid={ `${indice}-recomendation-card` }
                   >
-                    <button type="button" className="card">
+                    <button
+                      type="button"
+                      className="card"
+                      data-testid={ `${indice}-recomendation-card` }
+                    >
                       <img
                         className="image-item"
                         src={ strDrinkThumb }
