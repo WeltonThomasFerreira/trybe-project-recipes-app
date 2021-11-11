@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { fetchFoodById } from '../redux/slices/foodRecipesSlice';
+import { fetchDrinksRecommended } from '../redux/slices/drinkRecipesSlice';
+import '../styles/pageDetails.css';
 
 export default function FoodDetails() {
   const history = useHistory();
@@ -10,9 +12,14 @@ export default function FoodDetails() {
   const index = path.split('/')[2];
   const dispatch = useDispatch();
   const { mealDetail } = useSelector((store) => store.foodRecipes);
+  const { suggestedDrink } = useSelector((store) => store.drinkRecipes);
 
   useEffect(() => {
     dispatch(fetchFoodById(index));
+<<<<<<< HEAD
+    dispatch(fetchDrinksRecommended());
+=======
+>>>>>>> main-group-3-workspace
   }, []);
 
   const mapIngredients = (meal) => {
@@ -31,23 +38,25 @@ export default function FoodDetails() {
         data-testid={ `${i}-ingredient-name-and-measure` }
       >
         {element}
-        -
-        { mensure[i] }
+        { mensure[i] ? `-  ${mensure[i]}` : ''}
       </p>
     ));
   };
 
-  console.log(mealDetail);
   return (
     <>
+<<<<<<< HEAD
+      {mealDetail.map((meal) => (
+=======
       FoodDetail
       { mealDetail && mealDetail.map((meal, position) => (
+>>>>>>> main-group-3-workspace
         <div key={ meal }>
           <img
             className="img"
             src={ meal.strMealThumb }
             data-testid="recipe-photo"
-            alt=""
+            alt="imagem"
           />
           <h2 data-testid="recipe-title">{ meal.strMeal}</h2>
           <p data-testid="recipe-category">{meal.strCategory}</p>
@@ -67,11 +76,29 @@ export default function FoodDetails() {
             data-testid="video"
             allow=" autoplay; clipboard-write; encrypted-media; picture-in-picture"
           />
-          <div data-testid={ `${position}-recomendation-card` } />
-          <button type="button" data-testid="start-recipe-btn">Start</button>
+          <div className="card">
+            {
+              suggestedDrink.map(({ strDrink, strDrinkThumb }, indice) => (
+                <div
+                  classNam="item"
+                  key={ strDrink }
+                  data-testid={ `${indice}-recomendation-card` }
+                >
+                  <img className="cardImage" src={ strDrinkThumb } alt={ strDrink } />
+                  <p data-testid={ `${indice}-recomendation-title` }>{strDrink}</p>
+                </div>
+              ))
+            }
+          </div>
+          <button
+            className="star-btn"
+            type="button"
+            data-testid="start-recipe-btn"
+          >
+            Start
+          </button>
         </div>
       ))}
-      ;
     </>
   );
 }

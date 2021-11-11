@@ -1,0 +1,22 @@
+.img {
+  width: 100%;
+}
+
+.cardImage {
+  width: 181px;
+}
+
+.card {
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  max-width: 360px;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.star-btn {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
