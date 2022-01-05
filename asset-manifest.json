@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/trybe-project-recipes-app/static/css/main.f82d62c9.chunk.css",
+    "main.js": "/trybe-project-recipes-app/static/js/main.fff152b1.chunk.js",
+    "main.js.map": "/trybe-project-recipes-app/static/js/main.fff152b1.chunk.js.map",
+    "runtime-main.js": "/trybe-project-recipes-app/static/js/runtime-main.30ba38e2.js",
+    "runtime-main.js.map": "/trybe-project-recipes-app/static/js/runtime-main.30ba38e2.js.map",
+    "static/css/2.95258f03.chunk.css": "/trybe-project-recipes-app/static/css/2.95258f03.chunk.css",
+    "static/js/2.2635ae5d.chunk.js": "/trybe-project-recipes-app/static/js/2.2635ae5d.chunk.js",
+    "static/js/2.2635ae5d.chunk.js.map": "/trybe-project-recipes-app/static/js/2.2635ae5d.chunk.js.map",
+    "index.html": "/trybe-project-recipes-app/index.html",
+    "precache-manifest.242d14c2cec72777f6a84ab28b1ecaf2.js": "/trybe-project-recipes-app/precache-manifest.242d14c2cec72777f6a84ab28b1ecaf2.js",
+    "service-worker.js": "/trybe-project-recipes-app/service-worker.js",
+    "static/css/2.95258f03.chunk.css.map": "/trybe-project-recipes-app/static/css/2.95258f03.chunk.css.map",
+    "static/css/main.f82d62c9.chunk.css.map": "/trybe-project-recipes-app/static/css/main.f82d62c9.chunk.css.map",
+    "static/js/2.2635ae5d.chunk.js.LICENSE.txt": "/trybe-project-recipes-app/static/js/2.2635ae5d.chunk.js.LICENSE.txt",
+    "static/media/chiquem.png": "/trybe-project-recipes-app/static/media/chiquem.d61725e1.png",
+    "static/media/drinkIcon.svg": "/trybe-project-recipes-app/static/media/drinkIcon.f87c47c3.svg",
+    "static/media/exploreIcon.svg": "/trybe-project-recipes-app/static/media/exploreIcon.157945ff.svg",
+    "static/media/mealIcon.svg": "/trybe-project-recipes-app/static/media/mealIcon.b27ba19e.svg",
+    "static/media/profileIcon.svg": "/trybe-project-recipes-app/static/media/profileIcon.74e487e5.svg",
+    "static/media/searchIcon.svg": "/trybe-project-recipes-app/static/media/searchIcon.db812135.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.30ba38e2.js",
+    "static/css/2.95258f03.chunk.css",
+    "static/js/2.2635ae5d.chunk.js",
+    "static/css/main.f82d62c9.chunk.css",
+    "static/js/main.fff152b1.chunk.js"
+  ]
+}
